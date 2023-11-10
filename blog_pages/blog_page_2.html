@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <link href="../styles/blog_style.css" rel="stylesheet"/>
+    <title>Blog - Lines & Mouse Input</title>
+  </head>
+  <body>
+    <header>
+    <a href ="../blog_main.html" class="homepgbtn">Back to Blogs</a>
+      <h1> StrelokC Blog - Lines & Mouse input</h1>
+    </header>
+    <main>
+    <video class="blog_main_vid" controls loop>
+      <source src="../videos/blog_pg_1_video.webm">
+    </video>
+    <p>Mouse input achieved.</p>
+    <h3>The Details</h3>
+    <p>
+    Well hello, welcome to my blog. If you haven't read the first one then you probably should, it will give some background and context. Or don't, I can't force ya. <br>
+    Anyway, as you can see I've managed to implement mouse input and feedback in my Graphics Project. It was relatively simple for the most part, nothing difficult, just time consuming. To get it to work I had to set up whats called a callback function and implement a static class. Not 100% sure if 'static class' is the correct term, but its basically a class that has all static members.
+    </p>
+    <p>
+    Now in order to correctly place the points on the screen for rendering, I had to convert the pixel coordinates to NDC (Normalised Device coordinates). Additionally I had to transform them in pixel-space to that the origin is at the centre of the screen. After that it was a matter of linking together the input class with the service locator class (static class) so that anytime you click in the graphics window, it'd create a point under the cursor.
+    </p>
+    <p>
+    The issues I ran into were:
+    <ul>
+    <li>The program not compiling, which was fixed by defining the static class member variables inside the .cpp file.</li>
+    <li>Mouse input not doing anything. This was caused by passing in the wrong variable to glBufferData(). Specifically the size of the data being sent to the GPU. I was sending sizeof(std::vector<>) instead of pointCount * sizeof(float) * 3.</li>
+    </ul>
+    </p>
+    <h3>As an aside...</h3>
+    <p>
+    I actually had to look up how to get the video element to scale properly in order to implement it the way it is now on this blog page!<br>
+    And again, I've had little time to work on this project along with this website. Being an adult sucks but at least I can make my own choices (kinda).<br>
+    The plan after this is to re-make Minesweeper in this graphics application. For that I'd have to implement a custom UI or use a library to make my life easier, but of course I can't have things be easy hahah... Anyway, I'm gonna try implement a crude form of GUI as a start and see where I can go from there.
+    </p>
+    <p>
+    Oh and I've managed to emulate Pokemon Mystery Dungeon Rescue Team DX! Binged through that in a couple days.
+    </p>
+    <p>Til' next time, Strelok out. </p>
+    </main>
+    <footer></footer>
+
+    <div class="blog_selection">
+    </div>
+  </body>
+</html>

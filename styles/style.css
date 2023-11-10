@@ -1,0 +1,412 @@
+@font-face
+{
+	font-family: commandLine;
+	src: local("windows_command_prompt"), url("windows_command_prompt.ttf");
+}
+
+@font-face
+{
+	font-family: testFont;
+	src: local("Ac437_IBM_VGA_8x16"), url("Ac437_IBM_VGA_8x16.ttf");
+}
+
+.navbar
+{
+	background: rgba(0,0,0,0);
+	/*background-image: linear-gradient(rgba(0,0,0,1), rgba(0,0,0,0));*/
+	top: 0;
+	display: inline-flex;
+	cursor: default;
+	position: fixed;
+	z-index: 2;
+}
+
+
+.oldprojects
+{
+	display: flex;
+
+}
+
+.oldprojects > img
+{
+	width: 500px;
+}
+
+.oldprojects > h2
+{
+	text-align: center;
+}
+
+
+
+.mainpgheading
+{
+	text-align: center;
+}
+
+.dropbtn
+{
+  background-image: linear-gradient(rgba(0,100,0,1), rgba(0,0,0,0));
+  background-color: transparent;
+  color: lime;
+  padding: 16px;
+  font-family: testFont;
+  /*font-size: 16px; */
+  border: none;
+}
+
+.testbtn
+{
+	
+}
+
+.dropdown
+{
+	position: relative;
+	  background-image: linear-gradient(rgba(0,100,0,1), rgba(0,0,0,0));
+	display: inline-block;
+}
+
+.dropdown-content
+{
+	display: none;
+	position: absolute;
+	background-color: DarkGreen;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	z-index: 2;
+}
+
+.dropdown-content a 
+{
+	color: lime;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+}
+
+.dropdown-content a:hover {
+	background-color: #3e8e41;
+	text-decoration : none;
+	}
+	
+	.dropdown-content a:visited
+	{
+		color:lime;
+	}
+
+.dropdown:hover .dropdown-content {display:block;}
+
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
+
+.currentproj h3	
+{
+	text-align: center;
+}
+
+/*h2
+{
+	text-align: center;
+}*/
+
+.abt
+{
+	padding: 10px 100px;
+}
+
+.abt > h2
+{
+	text-align = left;
+}
+
+.currentproj
+{
+	padding: 10px 100px;
+}
+
+.currentproj > h2
+
+{
+	text-align = left;
+}
+	
+.homepgbtn
+{
+	color: lime;
+	/*background-color: DarkGreen;*/
+	background-image: linear-gradient(rgba(0,100,0,1), rgba(0,0,0,0));
+	text-align: center;
+	padding: 16px 16px;
+	font-family: testFont;
+	text-decoration: none;
+	border: none;	
+}
+
+.homepgbtn:visited
+{
+	color:lime;
+}
+
+.homepgbtn:hover
+{
+	background-color: #3e8e41;
+}
+
+a
+{
+	text-decoration: none;
+}
+
+
+
+a:hover
+{
+	text-decoration: underline;
+}
+
+img.splashimg
+{
+	border: 4px solid;
+	display: block;
+	width: 50%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+
+
+.mainpage
+{
+	font-family: testFont;
+	background-repeat: no-repeat;
+	background-color:black;
+	/*background-image: linear-gradient((rgba(0,0,0,0), rgba(0,0,0,1));*/
+	color:lime;
+}
+.grad
+{
+	height: 100px;
+	background-color: rgba(0,0,0,0);
+}
+
+
+.totimg1
+{
+	/* Parallax effect */
+	height:100%;
+	
+	background-attachment: fixed;
+	background-position: center;
+	background-size: cover;
+	
+	
+	
+	font-family: testFont;
+	background-image: url("../images/Trial of Time splash.jpg");
+	background-repeat: no-repeat;
+	background-color:black;
+	color:lime;
+}
+
+.stuffedimg1
+{
+	/* Parallax effect */
+	background-image: url("../images/Stuffed Splash.jpg");
+	
+	height:100%;
+	
+	background-attachment: fixed;
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+.parrykingimg1
+{
+	/* Parallax effect */
+	height:100%;
+	
+	background-attachment: fixed;
+	background-position: center;
+	background-size: cover;
+	
+	
+	
+	font-family: testFont;
+	background-image: url("../images/Parry King splash.jpg");
+	background-repeat: no-repeat;
+	background-color:black;
+	color:lime;
+}
+
+
+
+.imgbar
+{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+	margin: 30px;
+	gap: 10px;
+	
+	
+}
+
+
+
+.imgbar > img
+{
+	/*position: absolute;*/
+	flex-basis: 350px;
+	height: 200px;
+
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+div.leftcontent
+{
+	position: relative;
+	margin-left: 2%;
+	width: 47%;
+}
+
+div.rightcontent
+{
+	position: relative;
+	width: 50%;
+	left: 50%;
+	transform: translateY(-100px);
+}
+
+.overlay
+{
+	background-color: rgba(0,255,0,0.5);
+	/*height: 75%;*/
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	display: none;
+	z-index: 9998;
+}
+
+#overlayimg 
+{
+	
+	position: fixed;
+	/*left: 5%;*/
+	top: 5%;
+	left: 12.5%;
+	width: 75%;
+	display: none;
+	z-index: 9999;
+}
+
+
+
+h1.projheading
+{
+	margin: 0px;
+	background-image: url("../images/Gradient.png")
+}
+
+.videocontent
+{
+	display: block;
+	margin: auto;
+	width: 50%;
+	height: 25%;
+	background: transparent;
+}
+
+h1
+{
+	text-align: center;
+}
+
+.sociallinks 
+{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	
+}
+
+.sociallinks img
+{
+		flex-basis: 50px;
+		height: 50px;
+}
+
+body>h2
+{
+	text-align: center;
+}
+
+body, html
+{
+	height: 100%;
+	margin: 0px;
+	font-family: testFont;
+	background-color: black;
+	background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,1));
+	color:lime;
+}
+
+.oldprojects > div > h3
+{
+	text-align: center;
+	/*height: 100px;*/
+}
+
+.oldprojects > div > p
+{
+	text-align: center;
+}
+
+.gamelink
+{
+	position: relative;
+	left:45%;
+	top: 20px;
+	color: lime;
+	text-align: center;
+	padding: 15px;
+	background-image: linear-gradient(rgba(0,100,0,1), rgba(0,0,0,0));
+	text-decoration: none;
+	border: none;
+	border-radius: 5px;
+	
+}
+
+.gamelink:hover
+{
+	text-decoration: none;
+	background-color: #3e8e41;
+}
+
+.gamelink:visited
+{
+	color: darkGreen;
+}
+
+footer
+{
+	text-align: center;
+	padding-top: 50px;
+}
+
+a
+{
+	color: lime;
+}
+
+a:visited
+{
+	color: darkGreen;
+}

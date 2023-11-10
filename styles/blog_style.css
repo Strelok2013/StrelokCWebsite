@@ -1,0 +1,161 @@
+@font-face
+{
+	font-family: commandLine;
+	src: local("windows_command_prompt"), url("windows_command_prompt.ttf");
+}
+
+@font-face
+{
+	font-family: testFont;
+	src: local("Ac437_IBM_VGA_8x16"), url("Ac437_IBM_VGA_8x16.ttf");
+}
+
+.navbar
+{
+	background: rgba(0,0,0,0);
+	/*background-image: linear-gradient(rgba(0,0,0,1), rgba(0,0,0,0));*/
+	top: 0;
+	display: inline-flex;
+	cursor: default;
+	position: fixed;
+	z-index: 2;
+}
+
+.dropbtn
+{
+  background-image: linear-gradient(rgba(0,100,0,1), rgba(0,0,0,0));
+  background-color: transparent;
+  color: lime;
+  padding: 16px;
+  font-family: testFont;
+  /*font-size: 16px; */
+  border: none;
+}
+
+.homepgbtn
+{
+	color: lime;
+	/*background-color: DarkGreen;*/
+	background-image: linear-gradient(rgba(0,100,0,1), rgba(0,0,0,0));
+	text-align: center;
+	padding: 16px 16px;
+	font-family: testFont;
+	text-decoration: none;
+	border: none;
+}
+
+.homepgbtn:visited
+{
+	color:lime;
+}
+
+.homepgbtn:hover
+{
+	background-color: #3e8e41;
+}
+
+.dropdown
+{
+	position: relative;
+	  background-image: linear-gradient(rgba(0,100,0,1), rgba(0,0,0,0));
+	display: inline-block;
+}
+
+.dropdown-content
+{
+	display: none;
+	position: absolute;
+	background-color: DarkGreen;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	z-index: 2;
+}
+
+.dropdown-content a
+{
+	color: lime;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+}
+
+.dropdown-content a:hover {
+	background-color: #3e8e41;
+	text-decoration : none;
+	}
+
+	.dropdown-content a:visited
+	{
+		color:lime;
+	}
+
+.dropdown:hover .dropdown-content {display:block;}
+
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
+
+header > h1
+{
+	text-align: center;
+}
+
+body
+{
+    color: lime;
+    background-color: black;
+    font-family: testFont;
+}
+
+.card
+{
+/*     margin-left: 10%; */
+/*     margin-right: 10%; */
+	position: relative;
+}
+
+.card > a > img
+{
+    width: 20%;
+}
+
+.cardDesc
+{
+	position: absolute;
+    margin: 10px;
+	top: 10%;
+	left: 25%;
+	overflow: clip;
+}
+
+.blog_main_img
+{
+	position: relative;
+	display:block;
+	margin-left: auto;
+	margin-right: auto;
+
+}
+
+.blog_img_container
+{
+	display:grid;
+	height:100%;
+}
+
+.blog_sub_img
+{
+	max-width: 100%;
+	max-height: 100vh;
+	margin: 1%;
+}
+
+.blog_main_vid
+{
+	max-width: 100%;
+	height: auto;
+}
+
+main
+{
+	margin-left: 15%;
+	margin-right: 15%;
+}

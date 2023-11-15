@@ -1,8 +1,16 @@
 <!DOCTYPE html>
 <html>
+<!-- Create a dropdown element that appends content to this html document.
+     ie. dropdown with add image, text, heading.
+     And then appends said element into the html document
 
+     Possibly necessary to create a database for the blog thing
+     Store various bits of data, date, title, number of text fields, number of images.
+!-->
 <head>
     <title> Nuclear test site for file uploads </title>
+    <link rel="stylesheet" href="styles/blog_create.css">
+    <script src="scripts/blog_create.js" defer></script>
 </head>
 
 <body>
@@ -18,6 +26,27 @@
 
         <button>Upload</button>
     </form>
+
+    <div id="blog_space">
+        <div class="toolbar">
+            <button>Upload Image</button>
+            <button>Upload Video</button>
+            <button id="blog_add_line" onclick="add_line_to_textarea()">Add Line</button>
+        </div>
+        <form method="post" enctype="multipart/form-data" action="scripts/action.php">
+            <!-- This will serve as the blog creation box?
+                Unless I make a blank page w/ dropdowns
+                To create individual elements
+            !-->
+                <label>Blog Content</label>
+                <textarea id="blog_raw"> </textarea>
+
+                <button>Create Post</button>
+        </form>
+    </div>
+
+    <!-- should implement a preview later !-->
+
 </body>
 
 </html>

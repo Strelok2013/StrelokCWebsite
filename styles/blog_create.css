@@ -1,0 +1,11 @@
+.toolbar
+{
+        height: 40px;
+        background-color: white;
+}
+
+#blog_space
+{
+    height: 500px;
+    background-color: grey;
+}

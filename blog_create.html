@@ -32,6 +32,8 @@
             <button>Upload Image</button>
             <button>Upload Video</button>
             <button id="blog_add_line" onclick="add_line_to_textarea()">Add Line</button>
+            <!-- Aight, so the text inside the textarea is selected then, it is deselected. and reselected again. !-->
+            <button onclick="strengthen_text()">BoldText</button>
         </div>
         <form method="post" enctype="multipart/form-data" action="scripts/action.php">
             <!-- This will serve as the blog creation box?
@@ -39,7 +41,7 @@
                 To create individual elements
             !-->
                 <label>Blog Content</label>
-                <textarea id="blog_raw"> </textarea>
+                <textarea id="blog_raw" onfocusout="save_text_area_selection()"> </textarea>
 
                 <button>Create Post</button>
         </form>

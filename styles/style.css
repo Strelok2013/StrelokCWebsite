@@ -22,22 +22,6 @@
 }
 
 
-.oldprojects
-{
-	display: flex;
-
-}
-
-.oldprojects > img
-{
-	width: 500px;
-}
-
-.oldprojects > h2
-{
-	text-align: center;
-}
-
 
 
 .mainpgheading
@@ -110,9 +94,53 @@
 	text-align: center;
 }*/
 
+/*
+ * Main page - Past projects
+ */
+
+.oldprojects
+{
+	display: flex;
+	justify-content: center;
+	width: 100%;
+}
+
+.oldprojects > div
+{
+	width: 500px;
+	text-align: center;
+	margin: 15px;
+}
+
+.oldprojects > a
+{
+	border: solid;
+	border-color: lime;
+	border-width: 5px;
+}
+
+.oldprojects > div > a > img
+{
+	width: 90%;
+}
+
+/*
+ * Something else
+ */
+section > h2
+{
+	text-align: center;
+}
+
+section > p
+{
+	text-align: center;
+}
+
 .abt
 {
 	padding: 10px 100px;
+	display:flex;
 }
 
 .abt > h2
@@ -120,15 +148,26 @@
 	text-align = left;
 }
 
+.abt > div
+{
+	width: 50%;
+}
+
 .currentproj
 {
 	padding: 10px 100px;
+	display: flex;
 }
 
 .currentproj > h2
 
 {
 	text-align = left;
+}
+
+.currentproj > div
+{
+	width: 50%;
 }
 	
 .homepgbtn
@@ -164,17 +203,6 @@ a:hover
 {
 	text-decoration: underline;
 }
-
-img.splashimg
-{
-	border: 4px solid;
-	display: block;
-	width: 50%;
-	margin-left: auto;
-	margin-right: auto;
-}
-
-
 
 .mainpage
 {
@@ -358,21 +386,11 @@ body, html
 	color:lime;
 }
 
-.oldprojects > div > h3
-{
-	text-align: center;
-	/*height: 100px;*/
-}
-
-.oldprojects > div > p
-{
-	text-align: center;
-}
-
 .gamelink
 {
 	position: relative;
-	left:45%;
+	display: block;
+	width: fit-content;
 	top: 20px;
 	color: lime;
 	text-align: center;
@@ -381,6 +399,7 @@ body, html
 	text-decoration: none;
 	border: none;
 	border-radius: 5px;
+	margin: auto;
 	
 }
 

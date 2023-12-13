@@ -6,7 +6,6 @@ var textarea_selection_start;
 var textarea_selection_end;
 console.log(document);
 
-console.log(blog_textarea.tagName);
 
 var textarea
 //function add_line_btn.onclick()
@@ -14,6 +13,24 @@ var textarea
 //    print("Button pressed, adding line...");
 //    blog_textarea.value += "-----";
 //}
+
+document.getElementById("sussy").addEventListener("change", function()
+{
+    console.log("Value of this is: " + this.value)
+})
+
+
+console.log(document.getElementById("sussy").nodeName);
+
+blog_form.addEventListener("change", function(e)
+{
+    if(e.target && e.target.nodeName == "INPUT")
+    {
+        console.log(e.target.value);
+    }
+}
+)
+
 
 function add_line_to_textarea()
 {
@@ -44,13 +61,14 @@ function strengthen_text()
 
 }
 
+
 function save_text_area_selection()
 {
     text_area_selection = window.getSelection();
     console.log("Saved text: \n" +  text_area_selection);
 }
 
-document.addEventListener("click", get_text_area_selection);
+//document.addEventListener("click", get_text_area_selection);
 
 /*while(true)
 {
@@ -88,7 +106,10 @@ function add_paragraph()
     blog_form.appendChild(paragraph);
 }
 
-function add_image()
+
+
+
+function add_image(event)
 {
     // Some sort of thing where I build a special image upload container??
     console.log("Adding input element...");
@@ -98,22 +119,16 @@ function add_image()
     //Create contents
     var inputField = document.createElement("INPUT");
     inputField.setAttribute("type", "file");
+    inputField.id = "img_in";
     var submitButton = document.createElement("BUTTON");
     submitButton.innerText = "Submit";
     submitButton.setAttribute("type", "button");
-    submitButton.addEventListener("click", confirm_image(inputField.value));
+    submitButton.id = "submit_img";
     img.appendChild(inputField);
     img.appendChild(submitButton);
     blog_form.appendChild(img);
 }
 
-function confirm_image(fileName)
-{
-    // Might be needed
-    var imgToCreate = document.createElement("IMG");
-    // Source is acquired how??
-    console.log("Value of input field: " + fileName);
-}
 
 function add_textarea()
 {
@@ -137,3 +152,9 @@ function get_text_area_selection()
     console.log("End: " + textarea_selection_end);
 }
 
+function add_img_from_srv()
+{
+    image_from_server = document.createElement("IMG");
+    image_from_server.src = "uploads/Strelok2.png";
+    blog_form.appendChild(image_from_server);
+}

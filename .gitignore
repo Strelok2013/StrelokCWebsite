@@ -1,5 +1,9 @@
 uploads/
 images/
 videos/
+.kdev4/
 *.webm
 *.mp4
+*.kdev4
+*.ftpquota
+*.ttf

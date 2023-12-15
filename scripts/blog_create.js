@@ -24,13 +24,42 @@ console.log(document.getElementById("sussy").nodeName);
 
 blog_form.addEventListener("change", function(e)
 {
+    var inputElement;
     if(e.target && e.target.nodeName == "INPUT")
     {
+        inputElement = e.target;
         console.log(e.target.value);
+        // Get the file name n such so that it's ready for upload
+
+        create_preview(inputElement.files[0]);
     }
 }
 )
 
+function create_preview(file)
+{
+    console.log("File is: " + file.name);
+    imgElement = document.createElement("IMG");
+    imgElement.src = URL.createObjectURL(file);
+    blog_form.appendChild(imgElement);
+}
+
+function send_img_to_server()
+{
+    const xmlhttp = new XMLHttpRequest();
+    //xmlhttp.
+
+}
+
+blog_form.addEventListener("click", function(e)
+{
+    // Event delegate for the button part of the image upload.
+    if(e.target && e.target.nodeName == "BUTTON")
+    {
+        console.log("Submit button was pressed");
+    }
+}
+)
 
 function add_line_to_textarea()
 {
@@ -109,7 +138,7 @@ function add_paragraph()
 
 
 
-function add_image(event)
+function add_image()
 {
     // Some sort of thing where I build a special image upload container??
     console.log("Adding input element...");

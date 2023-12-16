@@ -14,13 +14,8 @@ var textarea
 //    blog_textarea.value += "-----";
 //}
 
-document.getElementById("sussy").addEventListener("change", function()
-{
-    console.log("Value of this is: " + this.value)
-})
 
 
-console.log(document.getElementById("sussy").nodeName);
 
 blog_form.addEventListener("change", function(e)
 {
@@ -41,7 +36,9 @@ function create_preview(file)
     console.log("File is: " + file.name);
     imgElement = document.createElement("IMG");
     imgElement.src = URL.createObjectURL(file);
+    // This can be used to get the parent element --> imgElement.parentElement;
     blog_form.appendChild(imgElement);
+    // Getting width and height of the image can be done by querying it from the <img> element created here, if needed.
 }
 
 function send_img_to_server()
@@ -65,6 +62,28 @@ function add_line_to_textarea()
 {
     console.log("Pressed da button, adding line (hopefully)");
     blog_textarea.value += "\n-----\n";
+}
+
+function create_Test_Link()
+{
+    var link = document.createElement('a');
+    link.setAttribute('download', '');
+    link.href = make_link_to_file("asdasdasdasd");
+    link,innerHTML = "Test Link";
+    blog_form.appendChild(link);
+
+    var event = new MouseEvent('click');
+    link.dispatchEvent(event);
+}
+
+
+function make_link_to_file(text)
+{
+    var data = new Blob([text], {type: 'text/html'});
+
+    var textFile = window.URL.createObjectURL(data);
+
+    return textFile;
 }
 
 function strengthen_text()

@@ -26,18 +26,21 @@ blog_form.addEventListener("change", function(e)
         console.log(e.target.value);
         // Get the file name n such so that it's ready for upload
 
-        create_preview(inputElement.files[0]);
+        create_preview(inputElement.files[0], inputElement);
+        //inputElement.remove();
     }
 }
 )
 
-function create_preview(file)
+function create_preview(file, inputElem)
 {
     console.log("File is: " + file.name);
     imgElement = document.createElement("IMG");
     imgElement.src = URL.createObjectURL(file);
+    imgElement.setAttribute("class", "preview_img");
     // This can be used to get the parent element --> imgElement.parentElement;
-    blog_form.appendChild(imgElement);
+    console.log(inputElem);
+    blog_form.replaceChild(imgElement, inputElem);
     // Getting width and height of the image can be done by querying it from the <img> element created here, if needed.
 }
 
@@ -58,10 +61,10 @@ blog_form.addEventListener("click", function(e)
 }
 )
 
-function add_line_to_textarea()
+function add_line()
 {
-    console.log("Pressed da button, adding line (hopefully)");
-    blog_textarea.value += "\n-----\n";
+    var elem = document.createElement("hr");
+    blog_form.appendChild(elem);
 }
 
 function create_Test_Link()
@@ -161,20 +164,11 @@ function add_image()
 {
     // Some sort of thing where I build a special image upload container??
     console.log("Adding input element...");
-    // Create container
-    var img = document.createElement("DIV");
-    img.setAttribute("class", "img_upload");
     //Create contents
     var inputField = document.createElement("INPUT");
     inputField.setAttribute("type", "file");
     inputField.id = "img_in";
-    var submitButton = document.createElement("BUTTON");
-    submitButton.innerText = "Submit";
-    submitButton.setAttribute("type", "button");
-    submitButton.id = "submit_img";
-    img.appendChild(inputField);
-    img.appendChild(submitButton);
-    blog_form.appendChild(img);
+    blog_form.appendChild(inputField);
 }
 
 

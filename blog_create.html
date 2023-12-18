@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    <h1>PHP File upload </h1>
+   <!-- <h1>PHP File upload </h1>
 
     <form method="post" enctype="multipart/form-data" action="scripts/upload.php">
 
@@ -25,20 +25,21 @@
         <input type="file" id="file2" name="file2">
 
         <button>Upload</button>
-    </form>
+
+    </form>-->
+
+    <a href="blog_main.html">Back to blogs</a>
 
     <div id="blog_container">
+<!-- There is some advanced functionality present on the Blogger website where keypresses perform certain actions based on the current context  -->
         <div class="toolbar">
-            <button>Upload Image</button>
-            <button>Upload Video</button>
-            <button id="blog_add_line" onclick="add_line_to_textarea()">Add Line</button>
+            <button id="blog_add_line" onclick="add_line()">Add Line</button>
             <!-- Aight, so the text inside the textarea is selected then, it is deselected. and reselected again. !-->
             <button onclick="strengthen_text()">BoldText</button>
             <button onclick="add_textarea()">Add text field</button>
             <button onclick="add_heading()">Add Heading</button>
             <button onclick="add_paragraph()">Add paragraph</button>
             <button onclick="add_image()">Add image</button>
-            <button onclick="add_img_from_srv()">Add Image from server</button>
         </div>
         <form method="post" enctype="multipart/form-data" id="blog_space">
             <!-- This will serve as the blog creation box?

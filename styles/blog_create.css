@@ -1,11 +1,73 @@
+
+@font-face
+{
+	font-family: commandLine;
+	src: local("Ac437_IBM_VGA_8x16"), url("Ac437_IBM_VGA_8x16.ttf");
+}
+
 .toolbar
 {
         height: 40px;
-        background-color: white;
+        display:flex;
+        justify-content: center;
+        padding-bottom: 10px;
 }
 
+a
+{
+    padding: 15px 32px;
+    color: lime;
+    background-color: black;
+    background-image: linear-gradient(rgba(0,100,0,1), rgba(0,0,0,0));
+    font-size: 16px;
+}
+
+button
+{
+    color: lime;
+    background-color: black;
+    background-image: linear-gradient(rgba(0,100,0,1), rgba(0,0,0,0));
+    display:inline-block;
+    padding: 15px 32px;
+    font-size: 16px;
+    margin: 4px 2px;
+    font-family: commandLine;
+    cursor: pointer;
+    border: none;
+
+}
+
+/* Blog container */
+#blog_container
+{
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+/* Blog page preview content */
+.preview_img
+{
+    margin: auto;
+    width: 100%;
+}
+
+h1
+{
+    margin: auto;
+    text-align: center;
+}
+
+/* Default stuff */
 #blog_container
 {
     height: 500px;
-    background-color: grey;
+    border: 4px;
+    border-color: lime;
+}
+
+body
+{
+    font-family: commandLine;
+    background-color: black;
+    color: lime;
 }

@@ -31,24 +31,23 @@
     <a href="blog_main.html">Back to blogs</a>
 
     <div id="blog_container">
-<!-- There is some advanced functionality present on the Blogger website where keypresses perform certain actions based on the current context  -->
         <div class="toolbar">
             <button id="blog_add_line" onclick="add_line()">Add Line</button>
-            <!-- Aight, so the text inside the textarea is selected then, it is deselected. and reselected again. !-->
             <button onclick="strengthen_text()">BoldText</button>
             <button onclick="add_textarea()">Add text field</button>
             <button onclick="add_heading()">Add Heading</button>
             <button onclick="add_paragraph()">Add paragraph</button>
             <button onclick="add_image()">Add image</button>
         </div>
-        <form method="post" enctype="multipart/form-data" id="blog_space">
-            <!-- This will serve as the blog creation box?
-                Unless I make a blank page w/ dropdowns
-                To create individual elements !-->
+        <form method="post" enctype="multipart/form-data" id="blog_space" action="scripts/upload.php">
+            <!--
+            Here I'll need to add in a special element that acts as the cover image, with a default src value set in case I don't have a good cover image.
 
+            Also external data like image and video data will need to be uploaded to the server on top of the html document being created.
+            -->
             <h1 contenteditable="true">Page title</h1>
 
-
+            <button>Test PHP Code</button>
         </form>
            <button onclick="create_Test_Link()">Create Post</button>
     </div>

@@ -58,12 +58,6 @@ h1
 }
 
 /* Default stuff */
-#blog_container
-{
-    height: 500px;
-    border: 4px;
-    border-color: lime;
-}
 
 body
 {

@@ -24,9 +24,28 @@ blog_form.addEventListener("change", function(e)
     {
         inputElement = e.target;
         console.log(e.target.value);
+        fileIn = inputElement.files[0];
         // Get the file name n such so that it's ready for upload
-
-        create_preview(inputElement.files[0], inputElement);
+    if(fileIn.name == inputElement.parentElement.lastChild.id)
+    {
+        console.log("Same file used");
+    }
+    else
+    {
+        console.log("Different file used")
+        // Check for existing image;
+        if(inputElement.parentElement.lastChild.tagName == "IMG")
+        {
+            // Replace existing image
+            inputElement.parentElement.lastChild.src = URL.createObjectURL(fileIn);
+            inputElement.parentElement.lastChild.id  = fileIn.name;
+        }
+        else
+        {
+            // Create Image preview
+            create_preview(fileIn, inputElement);
+        }
+    }
         //inputElement.remove();
     }
 }
@@ -35,12 +54,16 @@ blog_form.addEventListener("change", function(e)
 function create_preview(file, inputElem)
 {
     console.log("File is: " + file.name);
+    // if(file.name == )
     imgElement = document.createElement("IMG");
     imgElement.src = URL.createObjectURL(file);
     imgElement.setAttribute("class", "preview_img");
+    imgElement.id = file.name;
     // This can be used to get the parent element --> imgElement.parentElement;
     console.log(inputElem);
-    blog_form.replaceChild(imgElement, inputElem);
+    //blog_form.insertBefore(imgElement, inputElem);
+    inputElem.parentElement.appendChild(imgElement);
+    // blog_form.replaceChild(imgElement, inputElem);
     // Getting width and height of the image can be done by querying it from the <img> element created here, if needed.
 }
 
@@ -165,10 +188,13 @@ function add_image()
     // Some sort of thing where I build a special image upload container??
     console.log("Adding input element...");
     //Create contents
+    var imgContainer = document.createElement("DIV");
+
     var inputField = document.createElement("INPUT");
     inputField.setAttribute("type", "file");
     inputField.id = "img_in";
-    blog_form.appendChild(inputField);
+    imgContainer.appendChild(inputField);
+    blog_form.appendChild(imgContainer);
 }
 
 

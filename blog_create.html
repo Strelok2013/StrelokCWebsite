@@ -8,7 +8,7 @@
      Store various bits of data, date, title, number of text fields, number of images.
 !-->
 <head>
-    <title> Nuclear test site for file uploads </title>
+    <title> StrelokC - Blog Create </title>
     <link rel="stylesheet" href="styles/blog_create.css">
     <script src="scripts/blog_create.js" defer></script>
 </head>
@@ -39,15 +39,23 @@
             <button onclick="add_paragraph()">Add paragraph</button>
             <button onclick="add_image()">Add image</button>
         </div>
-        <form method="post" enctype="multipart/form-data" id="blog_space" action="scripts/upload.php">
+        <form method="post" enctype="multipart/form-data" id="blog_form" action="scripts/upload.php">
+        <div>
+            <h1 contenteditable="true">Page title</h1>
+            <input type="file">
+            <p contenteditable="true">Intro description</p>
+            <hr>
+        </div>
+        <div id="blog_space">
+
+        </div>
             <!--
             Here I'll need to add in a special element that acts as the cover image, with a default src value set in case I don't have a good cover image.
 
             Also external data like image and video data will need to be uploaded to the server on top of the html document being created.
             -->
-            <h1 contenteditable="true">Page title</h1>
 
-            <button>Test PHP Code</button>
+            <button id="blog_submit">Test PHP Code</button>
         </form>
            <button onclick="create_Test_Link()">Create Post</button>
     </div>

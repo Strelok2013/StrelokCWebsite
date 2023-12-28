@@ -1,6 +1,8 @@
 var add_line_btn = document.getElementById("blog_add_line");
 var blog_textarea = document.getElementById("blog_raw");
-var blog_form = document.getElementById("blog_space");
+var blog_form = document.getElementById("blog_form");
+var blog_space = document.getElementById("blog_space");
+var blog_submit_btn = document.getElementById("blog_submit");
 var textarea_selection;
 var textarea_selection_start;
 var textarea_selection_end;
@@ -17,7 +19,7 @@ var textarea
 
 
 
-blog_form.addEventListener("change", function(e)
+blog_space.addEventListener("change", function(e)
 {
     var inputElement;
     if(e.target && e.target.nodeName == "INPUT")
@@ -61,9 +63,9 @@ function create_preview(file, inputElem)
     imgElement.id = file.name;
     // This can be used to get the parent element --> imgElement.parentElement;
     console.log(inputElem);
-    //blog_form.insertBefore(imgElement, inputElem);
+    //blog_space.insertBefore(imgElement, inputElem);
     inputElem.parentElement.appendChild(imgElement);
-    // blog_form.replaceChild(imgElement, inputElem);
+    // v.replaceChild(imgElement, inputElem);
     // Getting width and height of the image can be done by querying it from the <img> element created here, if needed.
 }
 
@@ -74,7 +76,7 @@ function send_img_to_server()
 
 }
 
-blog_form.addEventListener("click", function(e)
+blog_space.addEventListener("click", function(e)
 {
     // Event delegate for the button part of the image upload.
     if(e.target && e.target.nodeName == "BUTTON")
@@ -87,7 +89,7 @@ blog_form.addEventListener("click", function(e)
 function add_line()
 {
     var elem = document.createElement("hr");
-    blog_form.appendChild(elem);
+    blog_space.appendChild(elem);
 }
 
 function create_Test_Link()
@@ -169,7 +171,7 @@ function add_heading()
     const heading_3 = document.createElement("H1");
     heading_3.innerText = "Heading 3";
     heading_3.contentEditable = true;
-    blog_form.appendChild(heading_3);
+    blog_space.appendChild(heading_3);
 }
 
 function add_paragraph()
@@ -177,7 +179,7 @@ function add_paragraph()
     paragraph = document.createElement("p");
     paragraph.innerText = "paragraph";
     paragraph.contentEditable = true;
-    blog_form.appendChild(paragraph);
+    blog_space.appendChild(paragraph);
 }
 
 
@@ -192,16 +194,16 @@ function add_image()
 
     var inputField = document.createElement("INPUT");
     inputField.setAttribute("type", "file");
-    inputField.id = "img_in";
+    inputField.name = "img_in[]";
     imgContainer.appendChild(inputField);
-    blog_form.appendChild(imgContainer);
+    blog_space.appendChild(imgContainer);
 }
 
 
 function add_textarea()
 {
     const textarea = document.createElement("textarea");
-    blog_form.appendChild(textarea);
+    blog_space.appendChild(textarea);
 }
 
 function get_text_area_selection()

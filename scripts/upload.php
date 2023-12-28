@@ -15,10 +15,10 @@
 //
 // if(empty($_FILES))
 // {
-//     exit('$_FILES is empty - file_uploads may not be enabled in php.ini');
+    // exit('$_FILES is empty - file_uploads may not be enabled in php.ini');
 // }
-//
-// $directory = "../uploads/";
+
+$directory = "../uploads/";
 //
 // if(file_exists($directory))
 // {
@@ -50,6 +50,11 @@ else
     echo "Dir does not exist\n";
 }
 
+$dirContents = scandir("../images/blog_images/");
+var_dump($dirContents);
+
+$pageCount = count($dirContents) - 2;
+var_dump($pageCount);
 // if(!@mkdir($test_dir))
 // {
     // $error = error_get_last();
@@ -57,21 +62,36 @@ else
 // }
 
 
-function makeDir()
+
+var_dump($_FILES);
+
+echo '../images/blog_images/page' . $pageCount + 1 . '/';
+$uploadDir = '../images/blog_images/page' . $pageCount + 1 . '/';
+
+
+if(mkdir($uploadDir))
 {
-    if(mkdir($test_dir, 770))
-    {
-        echo $blog_pages_dir . "page2";
-        echo "Fungled it\n";
-    }
-    else
-    {
-        throw new Exception("Sumthin' happen'd");
-        echo "Bungled it\n";
-    }
+    echo "Created directory in : /images/blog_images/";
+    chmod($uploadDir, 0770);
+}
+else
+{
+    echo "Bungled it";
 }
 
-echo $_FILES['Carina-Christmas-Dragon']['name'];
+$uploadFile = '';
+
+
+foreach($_FILES['img_in']['tmp_name'] as $index=>$value)
+{
+    $uploadFile = $uploadDir . basename($_FILES['img_in']['name'][$index]);
+    move_uploaded_file($value, $uploadFile);
+    chmod($uploadFile, 0770);
+    echo $value;
+    echo $uploadFile;
+}
+
+//chown($uploadDir . "Carina-Christmas-Dragon.jpg", 1000);
 // var dir_contents = scandir($blog_pages_dir);
 
 // echo dir_contents.count;

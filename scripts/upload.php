@@ -61,7 +61,9 @@ var_dump($pageCount);
     // echo $error['message'];
 // }
 
+echo json_encode($pageCount);
 
+file_put_contents('../data.json', json_encode($pageCount));
 
 var_dump($_FILES);
 

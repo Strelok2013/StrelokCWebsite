@@ -93,6 +93,9 @@ foreach($_FILES['img_in']['tmp_name'] as $index=>$value)
     echo $uploadFile;
 }
 
+$dirContents = scandir("../images/blog_images/");
+$pageCount = count($dirContents) - 2;
+file_put_contents('../data.json', json_encode($pageCount));
 //chown($uploadDir . "Carina-Christmas-Dragon.jpg", 1000);
 // var dir_contents = scandir($blog_pages_dir);
 

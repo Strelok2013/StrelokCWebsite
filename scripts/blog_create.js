@@ -6,7 +6,10 @@ var blog_submit_btn = document.getElementById("blog_submit");
 var textarea_selection;
 var textarea_selection_start;
 var textarea_selection_end;
+var numPages = 0;
 //console.log(document);
+
+logData();
 
 
 var textarea
@@ -17,6 +20,40 @@ var textarea
 //}
 
 
+
+blog_form.addEventListener("change", function(e)
+{
+    var inputElement;
+    if(e.target && e.target.nodeName == "INPUT")
+    {
+        inputElement = e.target;
+        fileIn = inputElement.files[0];
+    }
+    if(fileIn.name == inputElement.parentElement.firstChild.id)
+    {
+        // same file used
+    }
+    else
+    {
+        console.log(inputElement.parentElement.childNodes);
+        if(inputElement.parentElement.childNodes[3].tagName == "IMG")
+        {
+            // We already have an image here, replace the src
+            inputElement.parentElement.childNodes[3].src = URL.createObjectURL(fileIn);
+            inputElement.parentElement.childNodes[3].id = fileIn.name;
+        }
+        else
+        {
+            // Create img element
+            intro_img_preview = document.createElement("IMG");
+            intro_img_preview.src = URL.createObjectURL(fileIn);
+            intro_img_preview.setAttribute("class", "preview_img");
+            intro_img_preview.id = fileIn.name;
+            document.getElementById("blog_intro").insertBefore(intro_img_preview, inputElement);
+        }
+    }
+}
+)
 
 
 blog_space.addEventListener("change", function(e)
@@ -118,7 +155,11 @@ async function logData()
 {
     const response = await fetch("data.json");
     const dataIn = await response.json();
-    return response.json();
+    console.log(dataIn);
+    numPages = dataIn;
+    // console.log(JSON.parse(dataIn));
+    // return dataIn;
+    // console.log(dataIn);
 }
 
 async function postJSON(data) {
@@ -134,12 +175,13 @@ async function postJSON(data) {
   }
 }
 
-
+// logData().then(json => console.log(json));
 // JSON.parse('{"numberOfPages": 1}');
 
 // JSON.parse("[1,2,3,4]");
 // JSON.parse('{"Gocks-Sucked": 1}');
 //postJSON(data);
+
 
 
 function create_html_document()
@@ -153,61 +195,123 @@ function create_html_document()
     // A really naive way of doing this is to create a string to act as data and then send that into a blob
 
     var blog_intro = document.getElementById("blog_intro");
-
-    var numPages = logData();
-
-    var blog_content = ["<!DOCTYPE html>\n"]; // Start off with this...
-
+    // Alright I've been at this for a while but the code below prints out the correct number of pages after the create document button is pressed. So with this in mind it *should* be safe to use for the rest of the function assuming the page WAS refreshed. otherwise everything will go tits up and lead to the wrong images.
+    console.log(numPages);
+    console.log(numPages + 1);
 
     var nodeList = blog_intro.childNodes;
 
+
+
+    var blog_content = ["<!DOCTYPE html>\n"]; // Start off with this...
+
+    var something = nodeList[1].innerHTML;
+    // Proces the <head> tag
+    var head_raw = `<head>\n
+        <meta charset=\"utf-8\">\n
+        <title> StreloC - ${something}</title>\n
+        <link rel=\"stylesheet\" href=\"../styles/blog_style.css\">\n
+        <head>\n
+    `;
+
+    blog_content[0] += head_raw;
+
+    blog_content[0] += "<body>\n";
+    blog_content[0] += "<a class= \"blog_page_back_btn\" href=\"../blog_main.html\"> Back to Blog pages</a>\n";
+
+
+    // Process the blog intro
+
+
+    var page_heading = nodeList[1].innerHTML;
+
+    blog_content[0] +=
+    `
+    <header>\n
+        <h1>${page_heading}</h1>\n
+    <header>\n
+    `
+
+    blog_content[0] += "<main>\n"
     var blog_intro_raw = "<div class =\"intro_block\">\n";
+
+    var openTag;
+    var content;
+    var closeTag;
+    for(node of nodeList)
+    {
+        switch (node.tagName)
+        {
+            case "P":
+                openTag = "<p>\n";
+                content = node.innerHTML + "\n";
+                closeTag = "</p>\n";
+                blog_intro_raw += openTag + content + closeTag;
+                break;
+            case "IMG":
+                // Special case here, instead of grabbing the input element we grab the image file and use that to create an image.
+                console.log("Input Element");
+                break;
+            default:
+                break;
+        }
+    }
+    blog_intro_raw += "</div>\n";
+    blog_content[0] += blog_intro_raw;
+    blog_content[0] += "<hr>\n";
+
+    // Process the rest of the blog content
+    nodeList = blog_space.childNodes;
+
+    var div_nodeList;
+    var div_imgSrc;
 
     for(node of nodeList)
     {
         switch (node.tagName)
         {
             case "P":
-                console.log("P Element");
+                openTag = "<p>\n";
+                content = node.innerHTML + "\n";
+                closeTag = "</p>\n"
+                blog_content[0] += openTag + content + closeTag;
                 break;
-            case "H1":
-                console.log("H1 Element");
+            case "H3":
+                openTag = "<h3>";
+                content = node.innerHTML;
+                closeTag = "</h3>\n";
+                blog_content[0] += openTag + content + closeTag;
                 break;
-            case "INPUT":
-
+            case "DIV":
+                div_nodeList = node.childNodes;
+                try // Test to see if there is an image attached
+                {
+                    div_imgSrc = ` ../images/blog_images/page${numPages + 1}/${div_nodeList[1].id}`;
+                }
+                catch // If no image then I dunno, make it an empty image lol
+                {
+                    div_imgSrc = "";
+                }
+                //Do some funky shit to turn the container and its contents into an img with src set
+                content = `<img src="${div_imgSrc}">\n`
+                blog_content[0] += content;
                 break;
-        }
-        if(node.tagName == "P")
-        {
-            console.log(node.innerHTML);
-            var openTag = "<p>\n";
-            var content = node.innerHTML + "\n";
-            var closeTag = "</p>\n";
-            blog_intro_raw += openTag + content + closeTag;
+            case "HR":
+                content = "<hr>\n";
+                blog_content[0] += content;
+                break;
+            default:
+                break;
         }
     }
-    blog_intro_raw += "</div>\n";
-    blog_content[0] += blog_intro_raw;
-    blog_content[0] += "<hr>\n";
-    // if (tagName == HR)
-    // {
-        // var openTag = "<hr>";
-        // blog_content += openTag;
-    // }
-//
-    // //if (tagName == P)
-    // {
-        // Possible to grab the OuterHTML and use that???
-        // var openTag = "<p>";
-        // var content = node.value;
-        // var closeTag = "</p>";
-    // }
 
     // Thumbnail image needs some special sauce to make it cool and work functionally...
-
+    blog_content[0] += "</main>";
+    blog_content[0] += "</body>";
     blog_content[0] += "</html>"; // ...End with this
-    // var page_blob = new Blob(blog_content, {type: "text/html"});
-    // console.log(page_blob);
+    console.log(blog_content[0]);
+    //var page_blob = new Blob(blog_content, {type: "text/html"});
+    //console.log(page_blob);
 
     // Going to need to implement JSON stuff in this script so that I can keep track of how many pages there are.
     // Of course I could've used SQL or something but nah.
@@ -265,7 +369,7 @@ function save_text_area_selection()
 
 function add_heading()
 {
-    const heading_3 = document.createElement("H1");
+    const heading_3 = document.createElement("H3");
     heading_3.innerText = "Heading 3";
     heading_3.contentEditable = true;
     blog_space.appendChild(heading_3);
@@ -288,7 +392,7 @@ function add_image()
     console.log("Adding input element...");
     //Create contents
     var imgContainer = document.createElement("DIV");
-
+    imgContainer.setAttribute("class", "img_container");
     var inputField = document.createElement("INPUT");
     inputField.setAttribute("type", "file");
     inputField.name = "img_in[]";

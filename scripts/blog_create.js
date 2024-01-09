@@ -129,11 +129,11 @@ function add_line()
     blog_space.appendChild(elem);
 }
 
-function create_Test_Link()
+function downLoadFile(fileName, contents)
 {
     var link = document.createElement('a');
-    link.setAttribute('download', '');
-    link.href = make_link_to_file("asdasdasdasd");
+    link.setAttribute('download', fileName);
+    link.href = make_link_to_file(contents);
     link,innerHTML = "Test Link";
     blog_form.appendChild(link);
 
@@ -142,11 +142,9 @@ function create_Test_Link()
 }
 
 
-function make_link_to_file(text)
+function make_link_to_file(contents)
 {
-    var data = new Blob([text], {type: 'text/html'});
-
-    var textFile = window.URL.createObjectURL(data);
+    var textFile = window.URL.createObjectURL(contents);
 
     return textFile;
 }
@@ -217,7 +215,7 @@ function create_html_document()
     blog_content[0] += head_raw;
 
     blog_content[0] += "<body>\n";
-    blog_content[0] += "<a class= \"blog_page_back_btn\" href=\"../blog_main.html\"> Back to Blog pages</a>\n";
+    blog_content[0] += "<a class= \"blog_page_back_btn\" href=\"../blog_main.php\"> Back to Blog pages</a>\n";
 
 
     // Process the blog intro
@@ -229,7 +227,7 @@ function create_html_document()
     `
     <header>\n
         <h1>${page_heading}</h1>\n
-    <header>\n
+    </header>\n
     `
 
     blog_content[0] += "<main>\n"
@@ -250,7 +248,11 @@ function create_html_document()
                 break;
             case "IMG":
                 // Special case here, instead of grabbing the input element we grab the image file and use that to create an image.
-                console.log("Input Element");
+                content =
+                `
+                    <img src="../images/blog_images/page${numPages + 1}/${node.id}"> \n
+                `;
+                blog_intro_raw += content;
                 break;
             default:
                 break;
@@ -310,6 +312,11 @@ function create_html_document()
     blog_content[0] += "</body>";
     blog_content[0] += "</html>"; // ...End with this
     console.log(blog_content[0]);
+
+    var page_blob = new Blob([blog_content], {type: 'text/html'});
+
+    downLoadFile(`blog_pg_${numPages + 1}`, page_blob);
+
     //var page_blob = new Blob(blog_content, {type: "text/html"});
     //console.log(page_blob);
 

@@ -7,10 +7,19 @@ var textarea_selection;
 var textarea_selection_start;
 var textarea_selection_end;
 var numPages = 0;
+
 //console.log(document);
 
 logData();
 
+const date = new Date();
+
+let day = date.getDate();
+let month = date.getMonth() + 1;
+let year = date.getFullYear();
+
+var currentDate = `${day}/${month}/${year}`;
+console.log(currentDate);
 
 var textarea
 //function add_line_btn.onclick()
@@ -231,6 +240,23 @@ function create_html_document()
     `
 
     blog_content[0] += "<main>\n"
+
+    // Getting the card info n shit.
+    var card_info = "<div hidden id=\"card_info\">\n";
+    var date_data = new Date();
+    var date_written = `${date_data.getDate()}/${date_data.getMonth() + 1}/${date_data.getFullYear()}`;
+    var card_info_text = document.getElementById("card_info").innerHTML;
+    card_info +=
+    `
+        <p> ${card_info_text} </p>
+        <p>Date Posted: ${date_written}</p>\n
+        <img src="/images/blog_images/page${numPages + 1}/${nodeList[3].id}">
+    `
+    card_info += "</div> \n";
+
+    blog_content[0] += card_info;
+
+    // Getting the intro
     var blog_intro_raw = "<div class =\"intro_block\">\n";
 
     var openTag;

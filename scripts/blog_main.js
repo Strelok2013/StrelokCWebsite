@@ -1,17 +1,35 @@
+const urlParams = new URLSearchParams(window.location.search);
+const page_number = parseInt(urlParams.get("page-nr"))
 
-document.onloa
+// console.log(urlParams);
 
-async function get_pages()
+// console.log(page_number);
+
+
+let page_links;
+
+
+
+async_resolve();
+
+
+
+async function async_resolve()
 {
-    const response = await fetch("blog_pages/blog_pg_1.html");
-    console.log(response);
-    const file = await response.text();
-    console.log(file);
+    result = await document.querySelectorAll('.pagination_numbers > a');
+    console.log(result);
+    page_links = result;
+    console.log(page_links[page_number])
 
-    var html = document.createElement('html');
-    html.innerHTML = file;
-
-    console.log(html);
+    for(const e of page_links)
+    {
+        if(e.innerHTML == page_number)
+        {
+            console.log(e.innerHTML + " " + page_number);
+            e.classList.add("active");
+        }
+    }
 }
 
-get_pages();
+
+// console.log(page_links[page_number].classList);

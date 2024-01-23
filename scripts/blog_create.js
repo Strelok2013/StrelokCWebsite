@@ -250,7 +250,7 @@ function create_html_document()
     `
         <p> ${card_info_text} </p>
         <p>Date Posted: ${date_written}</p>\n
-        <img src="/images/blog_images/page${numPages + 1}/${nodeList[3].id}">
+        <img src="images/blog_images/page${numPages + 1}/${nodeList[3].id}">
     `
     card_info += "</div> \n";
 

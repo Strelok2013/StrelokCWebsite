@@ -120,6 +120,7 @@
 {
 	object-fit:contain;
 	width: 25%;
+	height: 50%;
 }
 
 .card > a > h3
@@ -130,6 +131,61 @@
 header > h1
 {
 	text-align: center;
+}
+
+/* Pagination thing itself  */
+
+.pagination > a
+{
+	text-decoration: none;
+	visited: none;
+}
+
+.pagination_numbers
+
+{
+	display:inline-block;
+}
+
+.pagination_numbers > a
+{
+	color: green;
+	text-decoration: none;
+}
+
+a.active
+{
+	color: lime;
+	font-weight: bold;
+}
+
+.pagination > a:visited
+{
+	color: lime;
+}
+
+/* The pagination jump to box */
+.pagination_jump
+{
+/* 	background-color: grey; */
+	height: 50px;
+	width: 90px;
+	overflow: clip;
+	border: solid 2px;
+	border-color: lime;
+	display: flex;
+	flex-flow: row wrap;
+}
+
+.pagination_jump > p
+{
+	padding: 5px;
+}
+
+.pagination_jump > input
+{
+	align-self: center;
+	max-height: 24px;
 }
 
 /*

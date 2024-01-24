@@ -2,6 +2,7 @@ uploads/
 images/
 videos/
 .kdev4/
+blog_pages/
 *.webm
 *.mp4
 *.kdev4

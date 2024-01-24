@@ -55,6 +55,7 @@ function sort_by_newest($a, $b)
 
 $num_pages = ceil($entries / $num_cards);
 
+
 $remainder = $entries % $num_cards;
 
 
@@ -102,7 +103,6 @@ $intro_block = $page_contents->getElementById("intro_block");
   </head>
 
   <body>
-
       <div class="navbar">
         <div class="dropdown">
         <div class = "dropbtn">Projects</div>
@@ -114,7 +114,6 @@ $intro_block = $page_contents->getElementById("intro_block");
 	</div>
 	<a class="homepgbtn" href="index.html">Home</a>
 	<a href ="blog_main.php" class="homepgbtn">Blog</a>
-	<a href ="blog_main_dev.php">To Nuclear test site</a>
 	<!--<a class="homepgbtn" href = "#">Dev Blog</a> -->
       </div>
     <header>
@@ -142,10 +141,9 @@ else
   $cards_to_draw = $num_cards;
 }
 
-
 for($i = 0; $i < $cards_to_draw; $i++)
 {
-    $page_contents->loadHTMLFile($pages_dir . $files_by_date[$i]['file_name']);
+    $page_contents->loadHTMLFile($pages_dir . $files_by_date[$start + $i]['file_name']);
 
     $header = $page_contents->getElementsByTagName("header");
 
@@ -162,7 +160,7 @@ for($i = 0; $i < $cards_to_draw; $i++)
     $card_dateWritten = $info_block->childNodes[3]->nodeValue;
 ?>
 <div class="card">
-  <a href="<?php echo $pages_dir . $files_by_date[$i]['file_name'] ?>">
+  <a href="<?php echo $pages_dir . $files_by_date[$start + $i]['file_name'] ?>">
   <h3><?php echo $card_title ?> </h3>
   <img src="<?php echo $card_thumbnail ?>">
   </a>
@@ -192,13 +190,93 @@ for($i = 0; $i < $cards_to_draw; $i++)
     <!--
     'Previous' button.
     -->
+    <div class="pagination_numbers">
     <?php
+    if($num_pages < 5)
+    {
+      // Special layout
+      // Here we go, time to write a whole bunch a code :)
+
+      switch($num_pages)
+      {
+        case 1:
+          ?>
+          <!--Maybe just show nothing??-->
+          <a href="?page-nr=1">1</a>
+          <?php
+          break;
+        case 2:
+          if($page != 0)
+          {
+            ?>
+                <a href="?page-nr=<?php echo $page + 1 - 1 ?>">Previous</a>
+            <?php
+          }
+
+          ?>
+          <a href="?page-nr=1">1</a>
+          <a href="?page-nr=2">2</a>
+          <?php
+          if($page + 1 < $num_pages)
+          {
+              ?>
+                <a href="?page-nr= <?php echo $page + 2?>">Next</a>
+              <?php
+          }
+          break;
+        case 3:
+          if($page != 0)
+          {
+            ?>
+                <a href="?page-nr=<?php echo $page + 1 - 1 ?>">Previous</a>
+            <?php
+          }
+
+          ?>
+
+          <a href="?page-nr=1">1</a>
+          <a href="?page-nr=2">2</a>
+          <a href="?page-nr=3">3</a>
+          <?php
+          if($page + 1 < $num_pages)
+          {
+              ?>
+                <a href="?page-nr= <?php echo $page + 2?>">Next</a>
+          <?php
+          }
+          break;
+        case 4:
+          if($page != 0)
+          {
+            ?>
+                <a href="?page-nr=<?php echo $page + 1 - 1 ?>">Previous</a>
+            <?php
+          }
+
+          ?>
+          <a href="?page-nr=1">1</a>
+          <a href="?page-nr=2">2</a>
+          <a href="?page-nr=3">3</a>
+          <a href="?page-nr=4">4</a>
+          <?php
+          if($page + 1 < $num_pages)
+          {
+              ?>
+                <a href="?page-nr= <?php echo $page + 2?>">Next</a>
+          <?php
+          }
+          break;
+      }
+    }
+    else
+    {
+
+
     if($page != 0)
     { ?>
     <a href="?page-nr=<?php echo $page + 1 - 1 ?>">Previous</a>
 
     <?php } ?>
-    <div class="pagination_numbers">
     <a href="?page-nr=1">1</a>
     <?php
     // Some kind of logic that checks to see which page the use is on
@@ -237,20 +315,23 @@ for($i = 0; $i < $cards_to_draw; $i++)
       echo "...";
     } ?>
     <a href="?page-nr=<?php echo $num_pages ?>"><?php echo $num_pages?></a>
-    </div>
     <!--
     'Next' button
     -->
     <?php if($page + 1 < $num_pages)
       { ?>
       <a href="?page-nr= <?php echo $page + 2?>">Next</a>
-    <?php } ?>
+    <?php }
+
+    } ?>
     <!--<div class="pagination_jump">
     <p>Jump to:</p>
     <input type="text"> </input>
     <button>Ok</button>
     </div>-->
     </div>
+    </div>
+    <a href="blog_create.html"><button>Create button</button></a>
     </main>
 
     <footer></footer>
